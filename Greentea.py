@@ -1,4 +1,4 @@
-import opencv2
+import cv2
 import numpy as np
 from openvino.runtime import Core
 import os
