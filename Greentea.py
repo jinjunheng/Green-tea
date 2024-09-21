@@ -13,10 +13,17 @@ face_detection_model_xml = r"/workspaces/Green-tea/face-detection-adas-0001.xml"
 face_reid_model_xml = r"/workspaces/Green-tea/face-reidentification-retail-0095.xml"
 
 # 모델 로드 및 컴파일
-face_det_model = ie.read_model(model=face_detection_model_xml)
-face_det_compiled = ie.compile_model(model=face_det_model, device_name="CPU")
-face_reid_model = ie.read_model(model=face_reid_model_xml)
-face_reid_compiled = ie.compile_model(model=face_reid_model, device_name="CPU")
+try:
+    face_det_model = ie.read_model(model=face_detection_model_xml)
+    face_det_compiled = ie.compile_model(model=face_det_model, device_name="CPU")
+except Exception as e:
+    print(f"Error loading face detection model: {e}")
+
+try:
+    face_reid_model = ie.read_model(model=face_reid_model_xml)
+    face_reid_compiled = ie.compile_model(model=face_reid_model, device_name="CPU")
+except Exception as e:
+    print(f"Error loading face reidentification model: {e}")
 
 # 입력과 출력 레이어 명칭 추출
 face_det_input_layer = face_det_compiled.input(0)
