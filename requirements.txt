@@ -7,4 +7,5 @@ openvino==2024.1.0
 matplotlib==3.9.1
 streamlit-camera-input-live==0.2.0
 moviepy==2.0.0.dev2
+streamlit-webrtc==0.45.0
 
