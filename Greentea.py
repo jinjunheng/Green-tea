@@ -1,4 +1,4 @@
-import cv2
+import opencv-python
 import numpy as np
 from openvino.runtime import Core
 import os
@@ -147,6 +147,11 @@ class VideoProcessor(VideoProcessorBase):
 webrtc_streamer(
     key="example",
     video_processor_factory=lambda: VideoProcessor(reference_embeddings),
+    rtc_configuration=RTCConfiguration(
+        {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
+    )
+)
+
     rtc_configuration=RTCConfiguration(
         {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
     )
