@@ -18,12 +18,18 @@ try:
     face_det_compiled = ie.compile_model(model=face_det_model, device_name="CPU")
 except Exception as e:
     print(f"Error loading face detection model: {e}")
+    face_det_compiled = None  # 오류 발생 시 None으로 초기화
 
 try:
     face_reid_model = ie.read_model(model=face_reid_model_xml)
     face_reid_compiled = ie.compile_model(model=face_reid_model, device_name="CPU")
 except Exception as e:
     print(f"Error loading face reidentification model: {e}")
+    face_reid_compiled = None  # 오류 발생 시 None으로 초기화
+
+# 모델 컴파일 성공 여부 체크
+if face_det_compiled is None or face_reid_compiled is None:
+    raise RuntimeError("모델을 제대로 로드할 수 없습니다. 프로그램을 종료합니다.")
 
 # 입력과 출력 레이어 명칭 추출
 face_det_input_layer = face_det_compiled.input(0)
