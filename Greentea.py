@@ -9,27 +9,14 @@ import av
 ie = Core()
 
 # 모델 경로 설정
-face_detection_model_xml = r"/workspaces/Green-tea/face-detection-adas-0001.xml"
-face_reid_model_xml = r"/workspaces/Green-tea/face-reidentification-retail-0095.xml"
+face_detection_model_xml = r"/workspaces/blank-app/model/face-detection-adas-0001.xml"
+face_reid_model_xml = r"/workspaces/blank-app/model/face-reidentification-retail-0095.xml"
 
 # 모델 로드 및 컴파일
-try:
-    face_det_model = ie.read_model(model=face_detection_model_xml)
-    face_det_compiled = ie.compile_model(model=face_det_model, device_name="CPU")
-except Exception as e:
-    print(f"Error loading face detection model: {e}")
-    face_det_compiled = None  # 오류 발생 시 None으로 초기화
-
-try:
-    face_reid_model = ie.read_model(model=face_reid_model_xml)
-    face_reid_compiled = ie.compile_model(model=face_reid_model, device_name="CPU")
-except Exception as e:
-    print(f"Error loading face reidentification model: {e}")
-    face_reid_compiled = None  # 오류 발생 시 None으로 초기화
-
-# 모델 컴파일 성공 여부 체크
-if face_det_compiled is None or face_reid_compiled is None:
-    raise RuntimeError("모델을 제대로 로드할 수 없습니다. 프로그램을 종료합니다.")
+face_det_model = ie.read_model(model=face_detection_model_xml)
+face_det_compiled = ie.compile_model(model=face_det_model, device_name="CPU")
+face_reid_model = ie.read_model(model=face_reid_model_xml)
+face_reid_compiled = ie.compile_model(model=face_reid_model, device_name="CPU")
 
 # 입력과 출력 레이어 명칭 추출
 face_det_input_layer = face_det_compiled.input(0)
@@ -111,8 +98,8 @@ def get_reference_embeddings(image_paths):
 
 # 기준 얼굴 이미지 경로 설정
 reference_image_paths = [
-    r"/workspaces/Green-tea/image.jpg",
-    r"/workspaces/Green-tea/image2.jpg"
+    r"/workspaces/blank-app/image.jpg",
+    r"/workspaces/blank-app/image2.jpg"
 ]
 
 # 기준 얼굴 임베딩 추출
@@ -164,4 +151,5 @@ webrtc_streamer(
         {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
     )
 )
+
 
