@@ -9,8 +9,8 @@ import av
 ie = Core()
 
 # 모델 경로 설정
-face_detection_model_xml = r"/workspaces/Green-tea/models/face-detection-adas-0001.xml"
-face_reid_model_xml = r"/workspaces/Green-tea/models/face-reidentification-retail-0095.xml"
+face_detection_model_xml = r"/workspaces/Greentea/models/face-detection-adas-0001.xml"
+face_reid_model_xml = r"/workspaces/Greentea/models/face-reidentification-retail-0095.xml"
 
 # 모델 로드 및 컴파일
 face_det_model = ie.read_model(model=face_detection_model_xml)
@@ -98,8 +98,8 @@ def get_reference_embeddings(image_paths):
 
 # 기준 얼굴 이미지 경로 설정
 reference_image_paths = [
-    r"/workspaces/Green-tea/image.jpg",
-    r"/workspaces/Green-tea/image2.jpg"
+    r"/workspaces/Greentea/image.jpg",
+    r"/workspaces/Greentea/image2.jpg"
 ]
 
 # 기준 얼굴 임베딩 추출
